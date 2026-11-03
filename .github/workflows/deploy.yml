@@ -32,7 +32,7 @@ jobs:
       - name: Configurar o GitHub Pages
         id: pages
         if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - run: npm ci
       - run: npm run lint
