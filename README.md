@@ -344,7 +344,7 @@ As mudanças de cada versão ficam no [CHANGELOG.md](CHANGELOG.md), no formato K
 | Pessoa | Papel |
 | --- | --- |
 | Lucas ([@LucasGMonteGomes](https://github.com/LucasGMonteGomes)) | CTO, Desenvolvedor Back-end e co-criador |
-| Gabriel S. Machado ([@GabrielDS02](https://github.com/GabrielDS02)) | Desenvolvedor Front-end e co-criador |
+| Gabriel S. Machado ([@GabrielDS02](https://github.com/GabrielDS02)) | COO, Desenvolvedor Full Stack e co-criador |
 
 ---
 
