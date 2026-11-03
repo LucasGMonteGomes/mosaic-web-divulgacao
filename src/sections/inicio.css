@@ -1,0 +1,213 @@
+.inicio {
+  position: relative;
+  min-height: 165vh;
+  min-height: 165svh;
+  background:
+    radial-gradient(60% 50% at 78% 50%, rgb(255 91 58 / 0.07), transparent 70%),
+    var(--papel);
+}
+
+.inicio__palco {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: clip;
+}
+
+.inicio__campo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  animation: campo-surge 700ms ease-out both;
+}
+
+@keyframes campo-surge {
+  from {
+    opacity: 0;
+  }
+}
+
+.inicio__texto {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * var(--margem), var(--largura));
+  margin-inline: auto;
+  padding: calc(var(--altura-cabecalho) + 24px) 0 64px;
+  pointer-events: none;
+}
+
+.inicio__texto a,
+.inicio__texto button {
+  pointer-events: auto;
+}
+
+.inicio__texto > * {
+  max-width: 640px;
+}
+
+.inicio__titulo {
+  margin: 22px 0 24px;
+  font-size: var(--titulo-gigante);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.inicio__linha {
+  display: block;
+  overflow: clip;
+  padding: 0 0.12em 0.1em 0;
+  margin-bottom: -0.06em;
+}
+
+.inicio__linha-interna {
+  display: block;
+  animation: linha-sobe 1100ms var(--saida) both;
+}
+
+.inicio__linha--2 .inicio__linha-interna {
+  animation-delay: 140ms;
+}
+
+@keyframes linha-sobe {
+  from {
+    transform: translateY(108%) rotate(2deg);
+  }
+}
+
+.inicio__titulo .destaque {
+  font-size: 1.08em;
+  letter-spacing: -0.02em;
+  transition: color 600ms var(--saida);
+}
+
+.inicio[data-fase='perto'] .inicio__linha--1 .destaque,
+.inicio[data-fase='longe'] .inicio__linha--2 .destaque {
+  color: var(--coral-texto);
+}
+
+.inicio__apoio {
+  max-width: 36ch;
+  font-size: var(--texto-grande);
+  line-height: 1.5;
+  animation: aparece 900ms 380ms var(--saida) both;
+}
+
+.inicio__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 34px;
+  animation: aparece 900ms 520ms var(--saida) both;
+}
+
+.inicio .selo {
+  background: rgb(246 245 242 / 0.8);
+  animation: aparece 700ms var(--saida) both;
+}
+
+/* Só movimento, sem esconder: o texto já aparece na primeira pintura (bom para o LCP). */
+@keyframes aparece {
+  from {
+    transform: translateY(14px);
+  }
+}
+
+.inicio__dica {
+  position: absolute;
+  z-index: 2;
+  bottom: 22px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cinza);
+  white-space: nowrap;
+  transform: translateX(-50%);
+  opacity: calc(1 - var(--p, 0) * 5);
+}
+
+.inicio__dica-trilho {
+  position: relative;
+  width: 2px;
+  height: 28px;
+  border-radius: 2px;
+  background: var(--rejunte-forte);
+  overflow: hidden;
+}
+
+.inicio__dica-trilho span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 10px;
+  background: var(--coral);
+  animation: dica-desce 1.8s var(--saida) infinite;
+}
+
+@keyframes dica-desce {
+  from {
+    transform: translateY(-12px);
+  }
+  to {
+    transform: translateY(30px);
+  }
+}
+
+@media (max-width: 899px) {
+  .inicio__palco {
+    align-items: end;
+  }
+
+  .inicio__texto {
+    padding-top: calc(var(--altura-cabecalho) + 30vh);
+    padding-bottom: 56px;
+  }
+
+  .inicio__dica {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) and (max-height: 700px) {
+  .inicio__texto {
+    padding-top: calc(var(--altura-cabecalho) + 24vh);
+    padding-bottom: 32px;
+  }
+
+  .inicio__titulo {
+    margin: 14px 0 16px;
+  }
+
+  .inicio__apoio {
+    font-size: 1rem;
+  }
+
+  .inicio__acoes {
+    margin-top: 22px;
+  }
+}
+
+/* Tela baixa demais para fixar a abertura (medido no JS): rola normalmente. */
+.inicio[data-curto='true'] {
+  min-height: 0;
+}
+
+.inicio[data-curto='true'] .inicio__palco {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inicio {
+    min-height: 100svh;
+  }
+}

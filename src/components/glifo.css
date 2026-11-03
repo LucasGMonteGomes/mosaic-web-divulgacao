@@ -1,0 +1,40 @@
+.glifo {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6%;
+  gap: clamp(2px, 1.2%, 8px);
+  aspect-ratio: 1;
+}
+
+.glifo span {
+  aspect-ratio: 1;
+  border-radius: 24%;
+  background: rgb(23 22 27 / 0.06);
+}
+
+.glifo span.ligada {
+  background: var(--cor);
+  animation: glifo-liga 520ms var(--mola) both;
+  animation-delay: var(--atraso);
+}
+
+@keyframes glifo-liga {
+  from {
+    transform: scale(0.2) rotate(-25deg);
+    opacity: 0;
+  }
+}
+
+.glifo--estatico {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.glifo__apagadas {
+  fill: rgb(23 22 27 / 0.06);
+}
+
+.glifo__acesas {
+  fill: var(--cor);
+}

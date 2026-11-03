@@ -1,0 +1,164 @@
+.por-vir {
+  position: relative;
+  padding: var(--secao) 0 calc(var(--secao) * 1.1);
+  background: var(--papel);
+}
+
+.por-vir__cabeca {
+  display: grid;
+  gap: 22px;
+  max-width: 900px;
+}
+
+.por-vir__corpo {
+  margin-top: clamp(40px, 6vw, 80px);
+  display: grid;
+  gap: 48px;
+}
+
+.pilares {
+  border-top: 2px solid var(--tinta);
+}
+
+.pilar {
+  border-bottom: 1px solid var(--rejunte-forte);
+}
+
+.pilar__titulo {
+  font-size: inherit;
+}
+
+.pilar__botao {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 28px);
+  padding: clamp(16px, 2.4vw, 26px) 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pilar__numero {
+  flex: none;
+  width: 3ch;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cinza);
+  font-variant-numeric: tabular-nums;
+}
+
+.pilar__nome {
+  font-size: clamp(2.125rem, 1.2rem + 4.4vw, 5.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  transition:
+    transform 500ms var(--saida),
+    color 300ms ease;
+}
+
+.pilar__marca {
+  margin-left: auto;
+  flex: none;
+  width: clamp(18px, 2.4vw, 28px);
+  height: clamp(18px, 2.4vw, 28px);
+  border-radius: 28%;
+  border: 2px solid var(--tinta);
+  transition:
+    transform 500ms var(--mola),
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.pilar__botao:hover .pilar__nome {
+  transform: translateX(10px);
+}
+
+.pilar--aberto .pilar__nome {
+  transform: translateX(10px);
+}
+
+.pilar--aberto .pilar__marca {
+  background: var(--cor);
+  border-color: var(--cor);
+  transform: rotate(45deg);
+}
+
+.pilar__painel {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 0 0 clamp(20px, 3vw, 32px) calc(3ch + clamp(14px, 2.4vw, 28px));
+  animation: painel-abre 520ms var(--saida);
+}
+
+.pilar__painel[hidden] {
+  display: none;
+}
+
+.pilar__painel p {
+  max-width: 46ch;
+  font-size: var(--texto-grande);
+  line-height: 1.5;
+}
+
+@keyframes painel-abre {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.por-vir__palco {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .por-vir__corpo {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .pilar__glifo-mini {
+    display: none;
+  }
+
+  .pilar__painel {
+    grid-template-columns: 1fr;
+  }
+
+  .por-vir__palco {
+    display: block;
+    height: 100%;
+  }
+
+  .por-vir__fixo {
+    position: sticky;
+    top: calc(var(--altura-cabecalho) + 48px);
+    display: grid;
+    gap: 22px;
+    padding: 36px;
+    border-radius: var(--raio-gg);
+    background: #fff;
+    box-shadow: var(--sombra);
+    transform: rotate(-1.5deg);
+  }
+
+  .por-vir__legenda {
+    display: flex;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .por-vir__legenda span {
+    color: var(--cinza);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+}

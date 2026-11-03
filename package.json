@@ -1,0 +1,36 @@
+{
+  "name": "mosaic-web-divulgacao",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site de pré-lançamento da Mosaicofy (mosaicofy.com): estático, em React, publicado no GitHub Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "test": "vitest run",
+    "check": "npm run lint && npm run test && npm run build",
+    "assets": "node scripts/gerar-imagens.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.89.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}
