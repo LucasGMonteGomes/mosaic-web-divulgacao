@@ -1,0 +1,68 @@
+name: Problema no site
+description: Algo quebrado, errado ou estranho no site.
+title: 'fix: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por avisar. Se for uma **vulnerabilidade**, não abra issue: siga a [Política de segurança](https://github.com/txsoft-engineering/mosaic-web-divulgacao/blob/main/SECURITY.md).
+  - type: input
+    id: pagina
+    attributes:
+      label: Página
+      description: Endereço onde o problema aparece.
+      placeholder: https://mosaicofy.com/#cenas
+    validations:
+      required: true
+  - type: textarea
+    id: o-que-aconteceu
+    attributes:
+      label: O que aconteceu
+      description: Descreva o problema. Se for um texto errado, copie o trecho.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que era esperado
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Como reproduzir
+      placeholder: |
+        1. Abrir a página no celular
+        2. Rolar até "Cenas"
+        3. Arrastar o carrossel para o lado
+  - type: dropdown
+    id: aparelho
+    attributes:
+      label: Aparelho
+      multiple: true
+      options:
+        - Celular
+        - Tablet
+        - Computador
+    validations:
+      required: true
+  - type: input
+    id: navegador
+    attributes:
+      label: Navegador e sistema
+      placeholder: Chrome no Android, Safari no iPhone, Firefox no Windows...
+  - type: checkboxes
+    id: preferencias
+    attributes:
+      label: Preferências do sistema
+      description: Marque se alguma estava ligada.
+      options:
+        - label: Movimento reduzido
+        - label: Modo de economia de dados
+        - label: Leitor de tela
+  - type: textarea
+    id: prints
+    attributes:
+      label: Prints ou vídeo
+      description: Arraste as imagens para cá.

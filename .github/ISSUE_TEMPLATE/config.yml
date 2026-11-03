@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Site da Mosaicofy
+    url: https://mosaicofy.com
+    about: Veja o site publicado.
+  - name: Quadro Mosaic Flow
+    url: https://github.com/orgs/txsoft-engineering/projects/1
+    about: Tarefas, requisitos e o andamento do projeto.
+  - name: Documentação do projeto (mosaic-docs)
+    url: https://github.com/txsoft-engineering/mosaic-docs
+    about: Visão do produto, regras de negócio, marca e marketing.

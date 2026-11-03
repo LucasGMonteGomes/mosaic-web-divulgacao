@@ -1,0 +1,150 @@
+.chamada {
+  position: relative;
+  padding: var(--secao) 0 clamp(40px, 6vw, 72px);
+  background: var(--coral);
+  color: var(--tinta);
+}
+
+.chamada__pastilhas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.chamada__pastilhas span {
+  position: absolute;
+  border-radius: 24%;
+  background: rgb(255 246 238 / 0.18);
+  animation: pastilha-solta 8s ease-in-out infinite;
+}
+
+.chamada__pastilhas span:nth-child(3n) {
+  background: rgb(23 22 27 / 0.12);
+}
+
+.chamada__interno {
+  position: relative;
+  display: grid;
+  gap: 24px;
+}
+
+.chamada__titulo {
+  font-size: var(--titulo-gigante);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.chamada__titulo .destaque {
+  color: var(--creme);
+}
+
+.chamada__texto {
+  max-width: 46ch;
+  font-size: var(--texto-grande);
+  font-weight: 500;
+}
+
+.chamada__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.chamada__situacao {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 20px;
+  border: 2px dashed var(--tinta);
+  border-radius: var(--pilula);
+  font-weight: 700;
+}
+
+.chamada__luz {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--tinta);
+  animation: obra-pisca 1.6s ease-in-out infinite;
+}
+
+.chamada__aviso {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+  font-weight: 700;
+}
+
+.chamada__redes {
+  display: grid;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.chamada__redes ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pilula-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--pilula);
+  background: rgb(23 22 27 / 0.1);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--rapido) ease,
+    transform var(--rapido) var(--saida);
+}
+
+.pilula-link span {
+  font-weight: 500;
+}
+
+.pilula-link:hover {
+  background: var(--tinta);
+  color: var(--creme);
+  transform: translateY(-2px);
+}
+
+.chamada__interno {
+  min-width: 0;
+}
+
+.chamada__dominio {
+  margin-top: clamp(40px, 7vw, 96px);
+  font-size: clamp(3rem, 0.8rem + 10.5vw, 13.5rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.065em;
+  color: var(--tinta);
+  white-space: nowrap;
+  /* espaço para a perna do "y" não ser cortada */
+  padding-bottom: 0.2em;
+  overflow-x: clip;
+}
+
+.chamada :focus-visible {
+  outline-color: var(--tinta);
+}
+
+@keyframes pastilha-solta {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(10deg);
+  }
+}

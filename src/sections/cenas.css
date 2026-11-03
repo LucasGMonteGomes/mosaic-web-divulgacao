@@ -1,0 +1,194 @@
+.cenas {
+  position: relative;
+  padding: var(--secao) 0 calc(var(--secao) * 0.8);
+  background: var(--creme);
+}
+
+.cenas__cabeca {
+  display: grid;
+  gap: 22px;
+}
+
+.cenas__cabeca > * {
+  max-width: 900px;
+}
+
+.cenas__intro {
+  font-size: var(--texto-grande);
+  color: var(--cinza);
+  max-width: 48ch;
+}
+
+.carrossel__trilho {
+  --largura-cena: clamp(260px, 76vw, 500px);
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  margin-top: clamp(40px, 6vw, 72px);
+  /* 100% (e não 100vw) para a primeira cena ficar centrada sem contar a barra de rolagem */
+  padding: 12px max(var(--margem), calc((100% - var(--largura-cena)) / 2)) 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* O encaixe só liga quando o carrossel chega perto da tela: um ajuste de encaixe
+   durante o carregamento conta como rolagem e atrapalha a medição de LCP. */
+.carrossel__trilho.encaixa,
+html:not(.js) .carrossel__trilho {
+  scroll-snap-type: x mandatory;
+}
+
+.carrossel__trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.carrossel__trilho:focus-visible {
+  outline-offset: -6px;
+  border-radius: 24px;
+}
+
+.carrossel__trilho.arrastando {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.cena {
+  --desloc: 0;
+  flex: 0 0 var(--largura-cena);
+  scroll-snap-align: center;
+  display: grid;
+  gap: 18px;
+  transform: scale(0.93);
+  opacity: 0.62;
+  transition:
+    transform 600ms var(--saida),
+    opacity 500ms var(--saida);
+}
+
+.cena--ativa {
+  transform: none;
+  opacity: 1;
+}
+
+.cena__quadro {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--raio-gg);
+  overflow: hidden;
+  background: var(--tinta-2);
+  box-shadow: 0 28px 60px -32px rgb(23 22 27 / 0.55);
+  isolation: isolate;
+}
+
+.cena__arte {
+  position: absolute;
+  inset: -6% -10%;
+  width: 120%;
+  max-width: none;
+  height: 112%;
+  object-fit: cover;
+  transform: translateX(calc(var(--desloc) * -6%));
+  will-change: transform;
+  pointer-events: none;
+}
+
+.cena-canvas {
+  transition: opacity 500ms ease;
+}
+
+.cena-canvas:not([data-pronta]) {
+  opacity: 0.92;
+}
+
+.cena-canvas--arquibancada { background: linear-gradient(#24222a 68%, #2f7d4e 72%); }
+.cena-canvas--almoco { background: #ff8a5c; }
+.cena-canvas--por-do-sol { background: linear-gradient(#a8241a, #f5b544 58%, #2e4468 60%); }
+.cena-canvas--noite { background: #17161b; }
+.cena-canvas--pelada { background: #2f7d4e; }
+.cena-canvas--chuva { background: linear-gradient(#3e5f8f, #5f7fa8); }
+.cena-canvas--hashtag { background: #ff5b3a; }
+.cena-canvas--voce { background: #fff6ee; }
+
+.cena__legenda {
+  display: grid;
+  gap: 10px;
+  padding-inline: 4px;
+  transform: translateX(calc(var(--desloc) * 14px));
+}
+
+.cena__quando {
+  justify-self: start;
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: var(--tinta);
+  color: var(--creme);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.cena__texto {
+  font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+.carrossel__controles {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.carrossel__progresso {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  max-width: 320px;
+}
+
+.carrossel__progresso li {
+  flex: 1;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--rejunte-forte);
+  transform-origin: left;
+  transition:
+    background-color 300ms ease,
+    transform 400ms var(--mola);
+}
+
+.carrossel__progresso li.cheio {
+  background: var(--coral);
+}
+
+.carrossel__contador {
+  margin-left: auto;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--cinza);
+}
+
+.carrossel__contador span {
+  color: var(--tinta);
+}
+
+@media (min-width: 1000px) {
+  .carrossel__trilho {
+    --largura-cena: clamp(380px, 32vw, 500px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cena__arte,
+  .cena__legenda {
+    transform: none;
+  }
+}

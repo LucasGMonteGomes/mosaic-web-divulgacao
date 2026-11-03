@@ -1,0 +1,539 @@
+/* Moldura original de celular + telas desenhadas em CSS (unidades em em). */
+.celular {
+  --l: 300px;
+  position: relative;
+  width: var(--l);
+  aspect-ratio: 9 / 19;
+  padding: calc(var(--l) * 0.035);
+  border-radius: calc(var(--l) * 0.16);
+  background: var(--tinta);
+  box-shadow:
+    inset 0 0 0 2px var(--tinta-3),
+    var(--sombra);
+  font-size: calc(var(--l) / 22);
+  user-select: none;
+}
+
+.celular::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--l) * 0.06);
+  left: 50%;
+  width: 26%;
+  height: calc(var(--l) * 0.06);
+  border-radius: 99px;
+  background: var(--tinta);
+  transform: translateX(-50%);
+}
+
+.celular__vidro {
+  position: relative;
+  height: 100%;
+  border-radius: calc(var(--l) * 0.13);
+  background: var(--papel);
+  overflow: hidden;
+}
+
+.tela {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+  padding: 0.9em 1.1em 1.1em;
+  color: var(--tinta);
+  line-height: 1.3;
+}
+
+/* Barra inferior flutuante em pílula, como nas telas desenhadas do app */
+.tela__doca {
+  position: absolute;
+  left: 50%;
+  bottom: 0.9em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 76%;
+  height: 2.6em;
+  padding: 0 0.6em;
+  border-radius: 999px;
+  background: rgb(23 22 27 / 0.92);
+  box-shadow: 0 0.6em 1.4em -0.6em rgb(23 22 27 / 0.5);
+  transform: translateX(-50%);
+}
+
+.tela__doca i {
+  width: 0.95em;
+  height: 0.95em;
+  border: 0.13em solid rgb(255 246 238 / 0.85);
+  border-radius: 32%;
+}
+
+.tela__doca i.tela__doca-busca {
+  border-radius: 50%;
+}
+
+.tela__doca i.tela__doca-conversa {
+  border-radius: 50% 50% 50% 12%;
+}
+
+.tela__doca i.tela__doca-perfil {
+  border: 0;
+  background: linear-gradient(135deg, var(--coral) 50%, var(--ambar) 50%);
+}
+
+.tela__doca b {
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 34%;
+  background:
+    linear-gradient(var(--creme), var(--creme)) center / 0.7em 0.13em no-repeat,
+    linear-gradient(var(--creme), var(--creme)) center / 0.13em 0.7em no-repeat,
+    var(--coral);
+}
+
+.tela p {
+  margin: 0;
+}
+
+.tela__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.15em 0.4em 0.4em;
+  font-size: 0.78em;
+  font-weight: 700;
+}
+
+.tela__sinais {
+  display: flex;
+  gap: 0.22em;
+  align-items: flex-end;
+}
+
+.tela__sinais i {
+  display: block;
+  width: 0.32em;
+  border-radius: 1px;
+  background: var(--tinta);
+}
+
+.tela__sinais i:nth-child(1) {
+  height: 0.4em;
+}
+.tela__sinais i:nth-child(2) {
+  height: 0.6em;
+}
+.tela__sinais i:nth-child(3) {
+  height: 0.8em;
+}
+
+.tela__topo {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.tela__topo svg {
+  flex: none;
+}
+
+.tela__titulo-app {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tela__titulo-app--grande {
+  font-size: 1.7em;
+  letter-spacing: -0.05em;
+}
+
+.tela__menu {
+  margin-left: auto;
+  width: 1.3em;
+  height: 0.75em;
+  border-block: 2px solid var(--tinta);
+  position: relative;
+}
+
+.tela__menu::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 2px solid var(--tinta);
+  transform: translateY(-50%);
+}
+
+/* "Fotos": composições em CSS, sempre com o rejunte das pastilhas por cima */
+.foto {
+  position: relative;
+  display: block;
+  border-radius: 0.6em;
+  overflow: hidden;
+  background: var(--areia);
+}
+
+.foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgb(23 22 27 / 0.16) 0 1px, transparent 1px 0.62em),
+    repeating-linear-gradient(0deg, rgb(23 22 27 / 0.16) 0 1px, transparent 1px 0.62em);
+}
+
+.foto--campo {
+  background: repeating-linear-gradient(90deg, #2f7d4e 0 18%, #4e9e62 18% 36%);
+}
+.foto--sol {
+  background:
+    radial-gradient(circle at 50% 62%, #fff6ee 0 14%, #fad38a 15% 22%, transparent 23%),
+    linear-gradient(#a8241a, #ff5b3a 45%, #f5b544 62%, #3e5f8f 63%, #24222a);
+}
+.foto--noite {
+  background:
+    radial-gradient(circle at 28% 30%, #ff5b3a 0 16%, transparent 17%),
+    radial-gradient(circle at 70% 55%, #f5b544 0 13%, transparent 14%),
+    radial-gradient(circle at 40% 78%, #f3a6a0 0 12%, transparent 13%),
+    #17161b;
+}
+.foto--mesa {
+  background:
+    radial-gradient(circle at 40% 45%, #fff 0 24%, #f5b544 25% 33%, #fff 34% 38%, transparent 39%),
+    repeating-conic-gradient(#ff5b3a 0 25%, #fff6ee 0 50%) 0 0 / 1.6em 1.6em;
+}
+.foto--ceu {
+  background: linear-gradient(#5f8fcb, #a9c6e8 70%, #e9dcc8 71%);
+}
+.foto--coral {
+  background:
+    linear-gradient(90deg, transparent 40%, #fff6ee 40% 54%, transparent 54%),
+    linear-gradient(transparent 36%, #fff6ee 36% 50%, transparent 50%),
+    #ff5b3a;
+}
+.foto--areia {
+  background:
+    radial-gradient(circle at 70% 30%, #fad38a 0 14%, transparent 15%),
+    linear-gradient(#7fa8d9 0 55%, #e9dcc8 55%);
+}
+.foto--chuva {
+  background:
+    radial-gradient(circle at 70% 72%, #fad38a 0 10%, #f5b544 11% 18%, transparent 19%),
+    linear-gradient(#3e5f8f, #5f7fa8);
+}
+.foto--arquibancada {
+  background:
+    linear-gradient(transparent 72%, #17161b 72% 76%, #2f7d4e 76%),
+    repeating-linear-gradient(45deg, #ff5b3a 0 6%, #fff6ee 6% 12%),
+    #24222a;
+}
+
+/* Perfil */
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: 0.4em;
+}
+
+.perfil__nome {
+  font-weight: 800;
+  font-size: 1.15em;
+  letter-spacing: -0.02em;
+}
+
+.perfil__usuario,
+.perfil__bio {
+  color: var(--cinza);
+  font-size: 0.86em;
+}
+
+.avatar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  width: 1.9em;
+  height: 1.9em;
+  padding: 1px;
+  border-radius: 0.6em;
+  overflow: hidden;
+  flex: none;
+  background: var(--tinta);
+}
+
+.avatar span {
+  border-radius: 2px;
+}
+
+.avatar--g {
+  width: 3.6em;
+  height: 3.6em;
+  border-radius: 1.1em;
+  gap: 2px;
+  padding: 2px;
+}
+
+.abas {
+  display: flex;
+  gap: 1.1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--rejunte);
+  font-size: 0.86em;
+  font-weight: 700;
+  color: var(--cinza);
+}
+
+.abas__ativa {
+  color: var(--tinta);
+  box-shadow: 0 0.55em 0 -0.35em var(--coral);
+}
+
+.abas--pilula {
+  border: 0;
+  gap: 0.5em;
+}
+
+.abas--pilula span {
+  padding: 0.35em 0.9em;
+  border-radius: 99px;
+  background: var(--rejunte);
+  color: var(--tinta);
+}
+
+.abas--pilula .abas__ativa {
+  background: var(--tinta);
+  color: var(--creme);
+  box-shadow: none;
+}
+
+.grade-de-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3em;
+}
+
+.grade-de-fotos .foto {
+  aspect-ratio: 4 / 5;
+  border-radius: 0.45em;
+}
+
+/* Sala da hashtag */
+.tela__topo--sala {
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--rejunte);
+}
+
+.sala__hashtag {
+  font-weight: 800;
+  font-size: 1.15em;
+  letter-spacing: -0.02em;
+  color: var(--coral-texto);
+}
+
+.sala__sub {
+  font-size: 0.78em;
+  color: var(--cinza);
+}
+
+.conversa {
+  display: grid;
+  gap: 0.8em;
+}
+
+.msg {
+  display: flex;
+  gap: 0.6em;
+  align-items: flex-start;
+}
+
+.msg__nome {
+  font-size: 0.8em;
+  font-weight: 800;
+}
+
+.msg__texto {
+  margin-top: 0.15em !important;
+  padding: 0.45em 0.75em;
+  border-radius: 0.2em 1em 1em 1em;
+  background: #fff;
+  font-size: 0.9em;
+  box-shadow: 0 1px 0 var(--rejunte);
+}
+
+.msg__foto {
+  width: 9em;
+  aspect-ratio: 4 / 3;
+  margin-top: 0.3em;
+}
+
+.aviso-da-sala {
+  margin-top: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.7em 0.9em;
+  border-radius: 0.9em;
+  background: var(--tinta);
+  color: var(--creme);
+  font-size: 0.82em;
+  font-weight: 600;
+}
+
+.aviso-da-sala .icone {
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  color: var(--coral);
+}
+
+.aviso-da-sala--aberto {
+  background: var(--coral);
+  color: var(--tinta);
+  justify-content: center;
+}
+
+/* Trending */
+.trending {
+  display: grid;
+  gap: 0.55em;
+}
+
+.trending__item {
+  display: flex;
+  gap: 0.8em;
+  align-items: center;
+  padding: 0.7em 0.8em;
+  border-radius: 1em;
+  background: #fff;
+  box-shadow: 0 1px 0 var(--rejunte);
+}
+
+.trending__item--quente {
+  background: var(--tinta);
+  color: var(--creme);
+}
+
+.trending__pos {
+  width: 1.7em;
+  height: 1.7em;
+  display: grid;
+  place-items: center;
+  border-radius: 0.5em;
+  background: var(--rejunte);
+  color: var(--tinta);
+  font-weight: 800;
+  font-size: 0.9em;
+  flex: none;
+}
+
+.trending__item--quente .trending__pos {
+  background: var(--coral);
+}
+
+.trending__corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.trending__tag {
+  font-weight: 800;
+  font-size: 0.95em;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trending__nota {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.74em;
+  opacity: 0.75;
+}
+
+.trending__nota .icone {
+  width: 1.1em;
+  height: 1.1em;
+  color: var(--coral);
+}
+
+.trending__calor {
+  display: block;
+  height: 0.28em;
+  margin-top: 0.4em;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--ambar), var(--coral)) 0 0 / calc(var(--calor) * 100%) 100% no-repeat,
+    rgb(23 22 27 / 0.1);
+}
+
+.trending__item--quente .trending__calor {
+  background-color: rgb(255 246 238 / 0.16);
+}
+
+/* Modo Leitor */
+.leitor {
+  display: grid;
+  gap: 0.7em;
+}
+
+.post-mini {
+  padding: 0.7em;
+  border-radius: 1em;
+  background: #fff;
+  box-shadow: 0 1px 0 var(--rejunte);
+  font-size: 0.9em;
+}
+
+.post-mini__cabeca {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 800;
+  font-size: 0.9em;
+}
+
+.post-mini__cabeca .avatar {
+  width: 1.6em;
+  height: 1.6em;
+}
+
+.post-mini__foto {
+  aspect-ratio: 16 / 10;
+  margin-bottom: 0.5em;
+}
+
+.leitor__rodape {
+  margin-top: auto;
+  display: grid;
+  gap: 0.55em;
+  padding: 0.8em;
+  border-radius: 1.1em;
+  background: var(--tinta);
+  color: var(--creme);
+  text-align: center;
+}
+
+.leitor__rodape p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  font-size: 0.8em;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.leitor__botao {
+  display: block;
+  padding: 0.65em;
+  border-radius: 99px;
+  background: var(--coral);
+  color: var(--tinta);
+  font-weight: 800;
+  font-size: 0.9em;
+}

@@ -1,0 +1,229 @@
+.ideias {
+  position: relative;
+  padding: var(--secao) 0;
+  background:
+    linear-gradient(rgb(23 22 27 / 0.045) 1px, transparent 1px) 0 0 / 100% 56px,
+    linear-gradient(90deg, rgb(23 22 27 / 0.045) 1px, transparent 1px) 0 0 / 56px 100%,
+    var(--papel);
+}
+
+.ideias__cabeca {
+  display: grid;
+  gap: 22px;
+  max-width: 880px;
+}
+
+.ideias__intro {
+  max-width: 54ch;
+  font-size: var(--texto-grande);
+  color: var(--cinza);
+}
+
+.ideias__corpo {
+  margin-top: clamp(56px, 8vw, 96px);
+}
+
+.ideias__passos {
+  display: grid;
+  gap: 88px;
+}
+
+.passo {
+  display: grid;
+  justify-items: start;
+  gap: 32px;
+}
+
+.passo__celular {
+  --l: min(260px, 72vw);
+  justify-self: center;
+}
+
+.passo__texto {
+  display: grid;
+  gap: 14px;
+  max-width: 34rem;
+}
+
+.passo__chapeu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  font-weight: 800;
+  font-size: 0.9375rem;
+}
+
+.passo__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--tinta);
+  color: var(--creme);
+  font-size: 0.8125rem;
+  transform: rotate(-6deg);
+}
+
+.selo-ideia {
+  padding: 4px 10px;
+  border: 1.5px dashed var(--rejunte-forte);
+  border-radius: 99px;
+  color: var(--cinza);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.passo__titulo {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.passo__descricao {
+  font-size: var(--texto-grande);
+  color: var(--cinza);
+  max-width: 40ch;
+}
+
+.ideias__palco {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .ideias__corpo {
+    display: grid;
+    grid-template-columns: 1fr minmax(380px, 0.85fr);
+    gap: 48px;
+  }
+
+  .ideias__passos {
+    gap: 0;
+  }
+
+  .passo {
+    min-height: 82vh;
+    align-content: center;
+  }
+
+  .passo__celular {
+    display: none;
+  }
+
+  .passo .passo__texto {
+    opacity: 0.32;
+    transform: translateX(-10px);
+    transition:
+      opacity 500ms var(--saida),
+      transform 600ms var(--saida);
+  }
+
+  .passo--ativo .passo__texto,
+  .js .passo--ativo .passo__texto[data-revelar].revelado {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ideias__palco {
+    display: block;
+  }
+
+  .ideias__fixo {
+    position: sticky;
+    top: calc(50vh - 330px + var(--altura-cabecalho) / 2);
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+    padding-block: 12px;
+  }
+
+  .ideias__celular {
+    --l: 300px;
+    transform: rotate(2deg);
+  }
+
+  .ideias__tela {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(14%) scale(0.96);
+    transition:
+      opacity 420ms var(--saida),
+      transform 620ms var(--saida);
+  }
+
+  .ideias__tela--passou {
+    transform: translateY(-10%) scale(0.96);
+  }
+
+  .ideias__tela--ativa {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ideias__marcadores {
+    display: flex;
+    gap: 8px;
+  }
+
+  .ideias__marcadores li {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: var(--rejunte-forte);
+    transition:
+      background-color 300ms ease,
+      transform 400ms var(--mola);
+  }
+
+  .ideias__marcadores li.ativo {
+    background: var(--coral);
+    transform: rotate(45deg) scale(1.15);
+  }
+
+  .ideias__fragmento {
+    position: absolute;
+    border-radius: 12px;
+    animation: fragmento-flutua 7s ease-in-out infinite;
+  }
+
+  .ideias__fragmento--a {
+    width: 54px;
+    height: 54px;
+    left: 4%;
+    top: 18%;
+    background: var(--coral);
+  }
+
+  .ideias__fragmento--b {
+    width: 34px;
+    height: 34px;
+    right: 6%;
+    top: 46%;
+    background: var(--ambar);
+    animation-delay: -2.4s;
+  }
+
+  .ideias__fragmento--c {
+    width: 24px;
+    height: 24px;
+    left: 12%;
+    bottom: 16%;
+    background: var(--campo);
+    animation-delay: -4.6s;
+  }
+}
+
+@keyframes fragmento-flutua {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(10deg);
+  }
+}

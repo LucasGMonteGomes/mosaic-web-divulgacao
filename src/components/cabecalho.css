@@ -1,0 +1,66 @@
+.cabecalho {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  transition:
+    transform 380ms var(--saida),
+    background-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.cabecalho[data-solido='true'] {
+  background: rgb(246 245 242 / 0.94);
+  box-shadow: 0 1px 0 var(--rejunte);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .cabecalho[data-solido='true'] {
+    background: rgb(246 245 242 / 0.82);
+    backdrop-filter: saturate(1.4) blur(12px);
+  }
+}
+
+.cabecalho[data-oculto='true'] {
+  transform: translateY(-100%);
+}
+
+.cabecalho__linha {
+  width: min(100% - 2 * var(--margem), var(--largura));
+  height: var(--altura-cabecalho);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cabecalho__marca {
+  display: inline-flex;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.cabecalho__nav ul {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 36px);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.cabecalho__cta.botao {
+  min-height: 44px;
+  padding: 0 16px 0 14px;
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 899px) {
+  .cabecalho__nav {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .cabecalho__marca .marca__nome {
+    display: none;
+  }
+}
