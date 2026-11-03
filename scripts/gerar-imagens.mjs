@@ -2,7 +2,7 @@
 // Uso: npm run assets  (só precisa rodar quando um SVG de assets-fonte mudar;
 // os arquivos gerados ficam em public/ e vão para o repositório).
 import { Resvg } from '@resvg/resvg-js'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -26,6 +26,11 @@ for (const [svg, arquivo, largura] of saidas) {
   writeFileSync(destino(arquivo), png(fonte(svg), largura))
   console.log(`gerado: public/${arquivo} (${largura}px)`)
 }
+
+// Banner do README (também serve de imagem de prévia do repositório no GitHub, 1280 x 640)
+mkdirSync(join(raiz, '.github', 'assets'), { recursive: true })
+writeFileSync(join(raiz, '.github', 'assets', 'banner.png'), png(fonte('banner.svg'), 1280))
+console.log('gerado: .github/assets/banner.png (1280px)')
 
 // favicon.ico com 16, 32 e 48 px (PNG dentro do ICO, aceito por todos os navegadores atuais)
 const tamanhos = [16, 32, 48]

@@ -1,4 +1,28 @@
-# Site de divulgação da Mosaicofy
+<p align="center">
+  <img src=".github/assets/banner.png" alt="Mosaicofy. De perto, pedaços. De longe, você." width="100%">
+</p>
+
+<h1 align="center">Site de divulgação da Mosaicofy</h1>
+
+<p align="center">
+  <a href="https://github.com/txsoft-engineering/mosaic-web-divulgacao/actions/workflows/deploy.yml"><img alt="Site de divulgação" src="https://github.com/txsoft-engineering/mosaic-web-divulgacao/actions/workflows/deploy.yml/badge.svg?branch=main"></a>
+  <a href="https://mosaicofy.com"><img alt="Site: mosaicofy.com" src="https://img.shields.io/badge/site-mosaicofy.com-FF5B3A"></a>
+  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-17161B"></a>
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white">
+  <img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white">
+  <img alt="Node.js 24" src="https://img.shields.io/badge/Node.js-24_LTS-5FA04E?logo=nodedotjs&logoColor=white">
+</p>
+
+<p align="center">
+  <a href="https://mosaicofy.com"><strong>Site</strong></a>
+  ·
+  <a href="https://github.com/orgs/txsoft-engineering/projects/1"><strong>Quadro Mosaic Flow</strong></a>
+  ·
+  <a href="https://github.com/txsoft-engineering/mosaic-docs"><strong>Documentação</strong></a>
+</p>
+
+---
 
 Site de pré-lançamento da Mosaicofy, publicado em **https://mosaicofy.com**.
 
@@ -21,6 +45,12 @@ A ideia central do site é a frase da marca: **"De perto, pedaços. De longe, vo
 - [Publicar no GitHub Pages](#publicar-no-github-pages)
 - [Domínio mosaicofy.com e DNS](#domínio-mosaicofycom-e-dns)
 - [Qualidade: lint, testes e Lighthouse](#qualidade-lint-testes-e-lighthouse)
+- [Contribuindo](#contribuindo)
+- [Segurança](#segurança)
+- [Código de conduta](#código-de-conduta)
+- [Changelog](#changelog)
+- [Licença e marca](#licença-e-marca)
+- [Equipe](#equipe)
 
 ## O que tem no site
 
@@ -47,7 +77,7 @@ Nada no site apresenta lives, música, notícias ou outros recursos como se já 
 - **Canvas 2D** para as animações de pastilhas, sem bibliotecas de animação.
 - **Fontes servidas pelo próprio site** com `@fontsource` (licença OFL): Plus Jakarta Sans e Instrument Serif.
 - **oxlint** para o lint e **Vitest** para os testes.
-- **@resvg/resvg-js** (só no desenvolvimento) para gerar os PNGs dos ícones e da imagem de compartilhamento.
+- **@resvg/resvg-js** (só no desenvolvimento) para gerar os PNGs dos ícones, da imagem de compartilhamento e do banner deste README.
 
 ## Começando
 
@@ -68,7 +98,7 @@ npm run dev        # servidor de desenvolvimento em http://localhost:5173
 | `npm run lint` | Lint com oxlint (inclui regras de acessibilidade). |
 | `npm test` | Testes com Vitest. |
 | `npm run check` | Lint, testes e build de uma vez. Rode antes de abrir um PR. |
-| `npm run assets` | Regera os PNGs e o `favicon.ico` a partir de `assets-fonte/`. |
+| `npm run assets` | Regera os PNGs, o `favicon.ico` e o banner do README a partir de `assets-fonte/`. |
 
 Para testar o build como ele fica na URL de projeto do GitHub Pages (com subpasta), use a variável `BASE_PATH`:
 
@@ -81,7 +111,16 @@ BASE_PATH=/mosaic-web-divulgacao npm run build && BASE_PATH=/mosaic-web-divulgac
 
 ```
 mosaic-web-divulgacao/
-├── .github/workflows/deploy.yml   ← lint, testes, build e publicação no GitHub Pages
+├── .github/
+│   ├── workflows/
+│   │   ├── deploy.yml            ← lint, testes, build e publicação no GitHub Pages
+│   │   ├── ci.yml                ← título do PR, segredos, dependências e análise de segurança
+│   │   └── security-weekly.yml   ← varredura de segurança toda segunda-feira
+│   ├── ISSUE_TEMPLATE/           ← modelos de issue (problema no site e ideia ou melhoria)
+│   ├── PULL_REQUEST_TEMPLATE.md  ← modelo de pull request
+│   ├── CODEOWNERS                ← revisores pedidos automaticamente
+│   ├── dependabot.yml            ← atualizações semanais de dependências e Actions
+│   └── assets/banner.png         ← banner deste README (gerado por npm run assets)
 ├── index.html, privacidade/, termos/, 404.html   ← uma página HTML de verdade para cada rota (metatags ficam aqui)
 ├── public/                     ← copiado como está para o site
 │   ├── CNAME                   ← domínio (mosaicofy.com)
@@ -89,23 +128,28 @@ mosaic-web-divulgacao/
 │   ├── og-image.png            ← imagem de compartilhamento (1200 x 630)
 │   ├── site.webmanifest, robots.txt, sitemap.xml
 │   └── marca/                  ← logo, nome e símbolo em SVG (claro e escuro)
-├── assets-fonte/               ← SVGs de origem dos ícones e da imagem de compartilhamento
+├── assets-fonte/               ← SVGs de origem dos ícones, da imagem de compartilhamento e do banner
 ├── scripts/
 │   ├── prerender.mjs           ← coloca o HTML pré-renderizado dentro de cada página
-│   └── gerar-imagens.mjs       ← SVG → PNG e favicon.ico (npm run assets)
-└── src/
-    ├── content/                ← TODOS os textos e links (é aqui que se edita o conteúdo)
-    │   ├── site.ts             ← textos da página inicial
-    │   ├── paginas.ts          ← privacidade, termos e 404
-    │   └── links.ts            ← domínio, redes sociais, e-mail e lista de espera
-    ├── sections/               ← uma seção da página inicial por arquivo (.tsx + .css)
-    ├── components/             ← cabeçalho, rodapé, botões, marca, ícones, celular de exemplo
-    ├── pages/                  ← páginas de texto e 404
-    ├── lib/                    ← animações (campo.ts, obra.ts, cenas.ts), desenho do @, utilidades
-    ├── styles/                 ← tokens.css (cores, fontes, medidas) e global.css
-    └── __tests__/              ← testes
+│   └── gerar-imagens.mjs       ← SVG → PNG, favicon.ico e banner (npm run assets)
+├── src/
+│   ├── content/                ← TODOS os textos e links (é aqui que se edita o conteúdo)
+│   │   ├── site.ts             ← textos da página inicial
+│   │   ├── paginas.ts          ← privacidade, termos e 404
+│   │   └── links.ts            ← domínio, redes sociais, e-mail e lista de espera
+│   ├── sections/               ← uma seção da página inicial por arquivo (.tsx + .css)
+│   ├── components/             ← cabeçalho, rodapé, botões, marca, ícones, celular de exemplo
+│   ├── pages/                  ← páginas de texto e 404
+│   ├── lib/                    ← animações (campo.ts, obra.ts, cenas.ts), desenho do @, utilidades
+│   ├── styles/                 ← tokens.css (cores, fontes, medidas) e global.css
+│   └── __tests__/              ← testes
+├── CHANGELOG.md                ← o que mudou em cada versão
+├── CONTRIBUTING.md             ← como contribuir
+├── CODE_OF_CONDUCT.md          ← código de conduta
+├── SECURITY.md                 ← como relatar uma vulnerabilidade
+├── LICENSE                     ← licença MIT (só o código, veja "Licença e marca")
+└── .editorconfig, .gitattributes, .nvmrc, .oxlintrc.json
 ```
-
 
 ## Editar os textos
 
@@ -147,7 +191,7 @@ Use só fotos com autorização de uso e de imagem (veja o termo de imagem em `m
 
 Coloque os arquivos em `public/videos/`. Para quem tem `prefers-reduced-motion`, mostre só a imagem de capa (veja `useMovimentoReduzido` em `src/lib/movimento.ts`).
 
-**Ícones e imagem de compartilhamento.** Os originais em SVG estão em `assets-fonte/`. Edite o SVG (Figma, Inkscape ou outro editor vetorial) e rode `npm run assets` para gerar de novo os PNGs e o `favicon.ico` em `public/`. O texto da `og-image.svg` já está convertido em curvas; para trocar a frase, edite com as fontes Plus Jakarta Sans e Instrument Serif instaladas e converta o texto em curvas antes de salvar.
+**Ícones, imagem de compartilhamento e banner.** Os originais em SVG estão em `assets-fonte/` (o banner deste README é o `banner.svg`). Edite o SVG (Figma, Inkscape ou outro editor vetorial) e rode `npm run assets` para gerar de novo os PNGs e o `favicon.ico` em `public/` e o banner em `.github/assets/`. O texto da `og-image.svg` e do `banner.svg` já está convertido em curvas; para trocar a frase, edite com as fontes Plus Jakarta Sans e Instrument Serif instaladas e converta o texto em curvas antes de salvar.
 
 ## Links, redes e lista de espera
 
@@ -204,6 +248,8 @@ Se o site mudar de domínio, troque `https://mosaicofy.com` nos HTMLs, em `publi
 
 Para conferir a imagem de compartilhamento depois de publicar, use o depurador de compartilhamento de cada rede (por exemplo, o do Facebook ou o validador de cards do LinkedIn).
 
+A prévia deste repositório quando o link é compartilhado usa o banner: em **Settings → General → Social preview**, envie `.github/assets/banner.png` (1280 x 640).
+
 ## Publicar no GitHub Pages
 
 O workflow `.github/workflows/deploy.yml` faz tudo sozinho:
@@ -255,3 +301,53 @@ Confira com `dig mosaicofy.com +short` e `dig www.mosaicofy.com +short` (ou um v
 - `npm run lint`: oxlint com regras de React, hooks, TypeScript e acessibilidade (`jsx-a11y`). O projeto usa oxlint porque o TypeScript 7 ainda não é suportado pelo typescript-eslint.
 - `npm test`: confere o conteúdo (sem texto provisório, sem promessas falsas, destaques bem fechados, descrições das imagens), as bibliotecas de desenho (o @ sem pastilhas sobrepostas, sorteios repetíveis) e a pré-renderização de todas as páginas (um único `h1`, link de pular conteúdo, uma seção para cada item do menu, imagens com `alt`, links externos seguros).
 - **Lighthouse:** com o build servido por `npm run preview`, abra o Chrome em http://localhost:4173, DevTools → Lighthouse, e rode nos modos celular e computador. Na última medição (03/11/2026) a página inicial ficou em 98 / 100 / 100 / 100 no celular e 100 / 100 / 100 / 100 no computador (desempenho, acessibilidade, boas práticas e SEO).
+
+No GitHub, cada pull request passa por:
+
+| Workflow | O que confere |
+| --- | --- |
+| `deploy.yml` (Site de divulgação) | Lint, testes e build. Na `main`, também publica. |
+| `ci.yml` (CI) | Título do PR em Conventional Commits, segredos no código (gitleaks), dependências vulneráveis de severidade alta e crítica (Trivy) e análise de segurança do código (Semgrep). |
+| `security-weekly.yml` | Toda segunda-feira: gitleaks em todo o histórico, Trivy a partir de severidade média e Semgrep com regras de segredos. |
+
+O Dependabot abre, toda segunda-feira, PRs agrupados de atualização das dependências npm e das GitHub Actions.
+
+## Contribuindo
+
+Resumo do fluxo (o guia completo está em [CONTRIBUTING.md](CONTRIBUTING.md)):
+
+1. Branch nova a partir da `main` atualizada, no formato `tipo/descricao` (`feat/waitlist-page`).
+2. Commits em [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/), em inglês, assinados com a própria conta.
+3. `npm run check` passando e uma linha nova no [CHANGELOG](CHANGELOG.md).
+4. Pull request em rascunho, em português, seguindo o modelo. Quem abriu não aprova o próprio; o merge é por squash. Nada vai direto para a `main`.
+
+## Segurança
+
+Achou uma vulnerabilidade? **Não abra issue pública.** Veja como relatar em particular na [Política de segurança](SECURITY.md).
+
+## Código de conduta
+
+Este projeto segue o [Código de Conduta](CODE_OF_CONDUCT.md), adaptado do Contributor Covenant 2.1. Ao participar, você concorda em segui-lo.
+
+## Changelog
+
+As mudanças de cada versão ficam no [CHANGELOG.md](CHANGELOG.md), no formato Keep a Changelog com Versionamento Semântico. As versões publicadas aparecem em [Releases](https://github.com/txsoft-engineering/mosaic-web-divulgacao/releases).
+
+## Licença e marca
+
+- **Código:** licença [MIT](LICENSE), © 2026 TXSoft Engineering. Ela cobre só o código-fonte deste repositório.
+- **Marca e conteúdo:** o nome Mosaicofy, o @, o logo, os textos do site e as ilustrações (incluindo os arquivos de `public/marca/`, `assets-fonte/` e `.github/assets/`) **não estão licenciados** pela MIT. O uso fora deste projeto depende de autorização da TXSoft Engineering.
+- **Fontes:** Plus Jakarta Sans e Instrument Serif, sob a [SIL Open Font License 1.1](https://openfontlicense.org), distribuídas pelos pacotes `@fontsource`.
+
+## Equipe
+
+| Pessoa | Papel |
+| --- | --- |
+| Lucas ([@LucasGMonteGomes](https://github.com/LucasGMonteGomes)) | CTO, Desenvolvedor Back-end e co-criador |
+| Gabriel S. Machado ([@GabrielDS02](https://github.com/GabrielDS02)) | Desenvolvedor Front-end e co-criador |
+
+---
+
+<p align="center">
+  <sub>© 2026 TXSoft Engineering · Mosaicofy: de perto, pedaços. De longe, você.</sub>
+</p>
