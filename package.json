@@ -3,6 +3,25 @@
   "private": true,
   "version": "1.0.0",
   "description": "Site de pré-lançamento da Mosaicofy (mosaicofy.com): estático, em React, publicado no GitHub Pages.",
+  "keywords": [
+    "mosaicofy",
+    "landing-page",
+    "pre-launch",
+    "react",
+    "typescript",
+    "vite",
+    "github-pages"
+  ],
+  "homepage": "https://mosaicofy.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/txsoft-engineering/mosaic-web-divulgacao.git"
+  },
+  "bugs": {
+    "url": "https://github.com/txsoft-engineering/mosaic-web-divulgacao/issues"
+  },
+  "license": "MIT",
+  "author": "TXSoft Engineering",
   "type": "module",
   "engines": {
     "node": ">=20.19"
