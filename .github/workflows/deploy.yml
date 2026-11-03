@@ -13,12 +13,19 @@ permissions:
 
 concurrency:
   group: site-divulgacao-${{ github.ref }}
-  cancel-in-progress: true
+  # Em PR cancela a execução antiga; na main nunca interrompe uma publicação no meio.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     name: Lint, testes e build
     runs-on: ubuntu-latest
+    # O configure-pages precisa ler as configurações do Pages; sem isso dá 403
+    # "Resource not accessible by integration". A permissão do job substitui a do
+    # workflow, por isso o contents: read se repete aqui.
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@v7
 
