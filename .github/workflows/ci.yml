@@ -1,0 +1,57 @@
+# Padrão de CI do Mosaic: documentacao/deploy.md no vault (mosaic-docs).
+# Lint, testes e build ficam no deploy.yml; aqui entram o título do PR e a segurança.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  GITLEAKS_IMAGE: ghcr.io/gitleaks/gitleaks:v8.30.1
+  TRIVY_IMAGE: aquasec/trivy:0.76.1
+  SEMGREP_IMAGE: semgrep/semgrep:1.182.0
+
+jobs:
+  pr-title:
+    name: Título do PR
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # O título vai por variável de ambiente, nunca interpolado no script (evita injeção).
+      - name: Conventional Commits
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          pattern='^(feat|fix|refactor|test|docs|chore|ci|style|perf|build)(\([a-z0-9-]+\))?!?: .+'
+          if [[ ! "$TITLE" =~ $pattern ]]; then
+            echo "::error::O título precisa seguir Conventional Commits, por exemplo: feat(cenas): add photo support to carousel scenes"
+            exit 1
+          fi
+
+  security:
+    name: Segredos, dependências e análise de segurança
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Segredos (gitleaks)
+        run: docker run --rm -v "$PWD:/repo" "$GITLEAKS_IMAGE" dir /repo --redact --no-banner
+
+      - name: Dependências vulneráveis (Trivy)
+        run: |
+          docker run --rm -v "$PWD:/repo" "$TRIVY_IMAGE" \
+            fs --quiet --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 /repo
+
+      - name: Análise de segurança do código (Semgrep)
+        run: |
+          docker run --rm -v "$PWD:/src" -w /src "$SEMGREP_IMAGE" \
+            semgrep scan --metrics=off --config p/typescript --config p/react --config p/owasp-top-ten \
+            --severity ERROR --error
