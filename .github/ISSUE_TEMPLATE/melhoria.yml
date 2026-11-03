@@ -1,0 +1,47 @@
+name: Ideia ou melhoria
+description: Sugira uma mudança de texto, seção, visual ou recurso do site.
+title: 'feat: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Mudanças grandes (seção nova, troca de visual, dependência nova) começam por aqui. Lembre das [regras de conteúdo](https://github.com/txsoft-engineering/mosaic-web-divulgacao/blob/main/CONTRIBUTING.md#regras-de-conteúdo): nada aparece como se já existisse, sem marcas de clubes e sem pessoas reais sem autorização.
+  - type: textarea
+    id: ideia
+    attributes:
+      label: Qual é a ideia
+      description: O que você quer mudar ou acrescentar.
+    validations:
+      required: true
+  - type: textarea
+    id: motivo
+    attributes:
+      label: Por que
+      description: Que problema resolve ou o que melhora para quem visita o site.
+    validations:
+      required: true
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde
+      multiple: true
+      options:
+        - Abertura
+        - Manifesto
+        - O que estamos desenhando
+        - Cenas
+        - O que está por vir
+        - Pastilha por pastilha
+        - Chamada final
+        - Cabeçalho ou rodapé
+        - Privacidade ou termos
+        - SEO e compartilhamento
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: referencias
+    attributes:
+      label: Referências
+      description: Links, prints, rascunhos ou o documento do mosaic-docs relacionado.

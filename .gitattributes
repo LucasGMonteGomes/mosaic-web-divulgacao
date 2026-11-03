@@ -1,0 +1,15 @@
+# Texto sempre com LF no repositório, mesmo vindo do Windows.
+* text=auto eol=lf
+
+# Binários: o git nunca mexe no fim de linha.
+*.png binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+*.mp4 binary
+*.webm binary
