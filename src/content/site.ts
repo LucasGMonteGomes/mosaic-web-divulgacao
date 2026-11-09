@@ -43,8 +43,21 @@ export const manifesto = {
     'A Mosaicofy está sendo feita para caber tudo isso. *Seu perfil não é placar.* E o calor do momento tem um lugar para acontecer, sem ficar grudado em você.',
     'Cada momento é uma pastilha. De perto, parecem pedaços soltos. *De longe, é você.*',
   ],
-  assinatura: 'Lucas e Gabriel, que estão construindo a Mosaicofy',
+  assinatura: 'que estão construindo a Mosaicofy',
 }
+
+// Quem está por trás do projeto. As fotos vêm direto do GitHub sem precisar
+// da API: https://github.com/<usuario>.png resolve para o avatar do perfil.
+// Se você trocar de foto no GitHub, é só atualizar a query string (?v=2) aqui.
+export type Desenvolvedor = {
+  nome: string
+  usuarioGitHub: string
+}
+
+export const desenvolvedores: Desenvolvedor[] = [
+  { nome: 'Lucas G. Monte Gomes', usuarioGitHub: 'lucas' }, // TODO: colocar o username real do Lucas
+  { nome: 'Gabriel', usuarioGitHub: 'gabriel' }, // TODO: colocar o username real do Gabriel
+]
 
 export type TelaDaIdeia = 'perfil' | 'sala' | 'trending' | 'leitor'
 
