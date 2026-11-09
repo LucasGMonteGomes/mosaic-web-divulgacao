@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { BordaDePastilhas } from '../components/BordaDePastilhas'
-import { manifesto } from '../content/site'
+import { manifesto, desenvolvedores } from '../content/site'
 import { aoRolarOuRedimensionar, limitar } from '../lib/movimento'
 import './manifesto.css'
 
@@ -68,7 +68,31 @@ export function Manifesto() {
         </div>
         <p className="manifesto__assinatura" data-revelar>
           <span aria-hidden="true">— </span>
-          {manifesto.assinatura}
+          <span className="manifesto__desenvolvedores">
+            {desenvolvedores.map((dev, i) => (
+              <span key={dev.usuarioGitHub} className="manifesto__dev-wrapper">
+                {i > 0 && <span className="manifesto__dev-e">e</span>}
+                <a
+                  className="manifesto__dev"
+                  href={`https://github.com/${dev.usuarioGitHub}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Perfil no GitHub de ${dev.nome}`}
+                >
+                  <img
+                    className="manifesto__dev-foto"
+                    src={`https://github.com/${dev.usuarioGitHub}.png?size=80`}
+                    alt=""
+                    width={32}
+                    height={32}
+                    loading="lazy"
+                  />
+                  <span className="manifesto__dev-nome">{dev.nome}</span>
+                </a>
+              </span>
+            ))}
+          </span>
+          <span>, {manifesto.assinatura}</span>
         </p>
       </div>
     </section>
